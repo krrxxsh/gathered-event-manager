@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gathered | Event Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand brand-button" type="button" data-view="home" aria-label="Gathered home"><span class="brand-mark">G</span><span>gathered</span></button>
+    <span class="status"><span class="status-dot"></span>Live event desk</span>
+  </header>
+
+  <main class="page-shell">
+    <div id="message" class="message" role="status" aria-live="polite"></div>
+
+    <section id="homeView" class="view home-view">
+      <div class="intro">
+        <p class="eyebrow">Event operations / welcome</p>
+        <h1>Make room<br><em>for everyone.</em></h1>
+        <p class="lede">A simple desk for shaping the room and welcoming the people in it.</p>
+      </div>
+      <div class="choice-grid">
+        <button class="choice-card choice-event" type="button" data-view="events">
+          <span class="choice-number">01</span><span class="choice-arrow">-></span>
+          <span class="choice-label">Manage events</span>
+          <span class="choice-copy">Create gatherings, set capacity, and keep your calendar clear.</span>
+        </button>
+        <button class="choice-card choice-attendee" type="button" data-view="attendees">
+          <span class="choice-number">02</span><span class="choice-arrow">-></span>
+          <span class="choice-label">Register attendees</span>
+          <span class="choice-copy">Add guests to an event, search the list, and keep every seat accounted for.</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="eventsView" class="view workspace-grid" hidden>
+      <div class="view-heading"><button class="back-button" type="button" data-view="home"><- Home</button><div><p class="eyebrow">Event operations / 01</p><h2>Shape the gathering</h2></div></div>
+      <section class="panel form-panel">
+        <div class="panel-heading"><div><p class="eyebrow">New event</p><h2>Set the scene</h2></div><span class="step">01</span></div>
+        <form id="eventForm">
+          <label>Event name<input name="name" required placeholder="e.g. Product launch night"></label>
+          <div class="field-row"><label>Date<input name="date" type="date" required></label><label>Capacity<input name="capacity" type="number" min="1" value="100" required></label></div>
+          <label>Venue<input name="venue" required placeholder="e.g. Studio 04, Shoreditch"></label>
+          <button class="button primary" type="submit">Create event <span>+</span></button>
+        </form>
+      </section>
+      <section class="panel events-panel">
+        <div class="panel-heading"><div><p class="eyebrow">Your calendar</p><h2>Upcoming events</h2></div><span id="eventCount" class="count-badge">0</span></div>
+        <div id="eventList" class="event-list"><p class="empty-state">Your next gathering will appear here.</p></div>
+      </section>
+    </section>
+
+    <section id="attendeesView" class="view registration-layout" hidden>
+      <div class="view-heading"><button class="back-button" type="button" data-view="home"><- Home</button><div><p class="eyebrow">Guest operations / 02</p><h2>Welcome them in</h2></div></div>
+      <section class="panel registration-panel">
+        <div class="panel-heading"><div><p class="eyebrow">Add a guest</p><h2>Register attendee</h2></div><span class="step">02</span></div>
+        <form id="attendeeForm">
+          <label>Event<select name="event_id" id="eventSelect" required><option value="">Choose an event</option></select></label>
+          <label>Full name<input name="name" required placeholder="e.g. Jordan Lee"></label>
+          <label>Email address<input name="email" type="email" required placeholder="jordan@example.com"></label>
+          <label>Ticket type<select name="ticket_type" required><option value="">Choose a ticket</option><option>General</option><option>VIP</option><option>Student</option></select></label>
+          <button class="button primary" type="submit">Confirm registration <span>-></span></button>
+        </form>
+      </section>
+
+      <section class="panel attendees-panel">
+        <div class="panel-heading attendee-heading"><div><p class="eyebrow">Guest list</p><h2>Attendees</h2></div><span class="step">03</span></div>
+        <div class="toolbar"><label class="search-field"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search by attendee name" aria-label="Search attendees"></label><select id="filterEvent" aria-label="Filter by event"><option value="">All events</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Ticket</th><th>Event</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="attendeeBody"><tr><td colspan="5" class="empty-state">No registrations yet.</td></tr></tbody></table></div>
+      </section>
+    </section>
+  </main>
+  <footer><span>Gathered event desk</span><span>Built for clear rooms and fuller lives.</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
