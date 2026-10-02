@@ -1,4 +1,4 @@
-# Gathered Event & Attendee Manager
+# Gathered - Event & Attendee Manager
 
 A single-page event and attendee management system built with HTML, CSS, JavaScript, Node.js, Express, and SQLite.
 
